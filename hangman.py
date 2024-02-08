@@ -13,7 +13,12 @@ for _ in range(word_length):
     display += "_"
 
 while not end_of_game:
-    guess = input("Guess a letter: ").lower()
+    while True:
+        guess = input("Guess a letter: ").lower()
+        if len(guess) == 1 and guess.isalpha():
+            break
+        else:
+            print("Invalid input. Please enter only a single letter.")
 
     if guess in display:
         print(f"You've already guessed {guess}")
@@ -28,7 +33,7 @@ while not end_of_game:
         lives -= 1
         if lives == 0:
             end_of_game = True
-            print("You lose.")
+            print(f"You lose. The word was {chosen_word}")
 
     print(f"{' '.join(display)}")
 
